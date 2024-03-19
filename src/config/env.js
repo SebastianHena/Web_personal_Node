@@ -1,14 +1,18 @@
 //Requerimos de "dotenv" para poder utilizar las variables de entorno
-require('dotenv').config();
-const { get } = require("env-var");
+//Esta primera forma es como se utilizaba de forma antigua
+//require('dotenv').config();
+//const { get } = require("env-var");
+
+//Esta segundo forma es de la manera actualizada
+import env from 'dotenv';
+import envar from "env-var";
+
+
+env.config();
+
 
 //Configuramos el puerto y la carpeta de los recursos estaticos
-const envs = {
-    PORT: get('PORT').required().asPortNumber(),
-    PUBLIC_PATH: get('PUBLIC_PATH').default('public').asString()
-}
-
-//Exportamos la configuracion
-module.exports = {
-    envs
+export const envs = {
+    PORT: envar.get('PORT').required().asPortNumber(),
+    PUBLIC_PATH: envar.get('PUBLIC_PATH').default('public').asString()
 }
